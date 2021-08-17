@@ -25,7 +25,7 @@ public class Pet {
     }
 
     //Incluir - Create - Post
-    @Test // Identifica o método ou função como um teste para o TestNG
+    @Test(priority = 1) // Identifica o método ou função como um teste para o TestNG
     public void incluirPet() throws IOException{
         String jsonBody = lerJson("db/pet1.json");
 
@@ -44,8 +44,30 @@ public class Pet {
                 .statusCode(200)
                 .body("name", is("Mel"))
                 .body("status", is("available"))
-                .body("category.name", is("dog"))
-                .body("tags.name", contains("sta"))
+                .body("category.name", is("PETSTORE98765"))
+                .body("tags.name", contains("data"))
         ;
+    }
+
+    @Test(priority = 2)
+    public void consultarPet(){
+        String petId = "1980010199";
+
+        String token =
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri + "/" + petId)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("name", is("Mel"))
+                .body("category.name", is("PETSTORE98765"))
+                .body("status", is("available"))
+        .extract()
+                .path("category.name")
+        ;
+        System.out.println("O token é" + token);
     }
 }
