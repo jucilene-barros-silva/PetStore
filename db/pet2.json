@@ -1,0 +1,18 @@
+{
+  "id": 1980010199,
+  "category": {
+    "id": 1,
+    "name": "PETSTORE98765"
+  },
+  "name": "Mel",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 20210812,
+      "name": "data"
+    }
+  ],
+  "status": "sold"
+}
